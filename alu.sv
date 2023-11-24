@@ -1,5 +1,3 @@
-
-
 module alu(
   input logic [31:0] readdata1,
   input logic [31:0] readdata2,
