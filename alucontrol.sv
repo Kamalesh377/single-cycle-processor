@@ -7,8 +7,8 @@ module alucontrol(
 
 always_comb begin
     case ({aluop, f7, f3})
-        3'b00: aluoperation = 4'b0010;
-        3'b01: aluoperation = 4'b0110;
+        2'b00: aluoperation = 4'b0010;
+        2'b01: aluoperation = 4'b0110;
         {2'b10, 7'b0100000, 3'b000}: aluoperation = 4'b0110;
         {2'b10, 7'b0000000, 3'b000}: aluoperation = 4'b0010;
         {2'b10, 7'b0000000, 3'b111}: aluoperation = 4'b0000;
