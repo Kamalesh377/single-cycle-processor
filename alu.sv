@@ -1,31 +1,30 @@
+
+
 module alu(
-  input logic [31:0] operand1,
-  input logic [31:0] operand2_reg,
-  input logic [31:0] operand2_imm,
-  input string operation,
-  input bit muxcontrol,
+  input logic [31:0] readdata1,
+  input logic [31:0] readdata2,
+  input logic [31:0] immgen,
+  input logic [3:0] aluoperation,
+  input logic alusrc,
   output logic [31:0] alu_output,
-  output bit zero_flag
+  output logic zero_flag
 );
-logic [31:0] operand2;
-assign operand2=muxcontrol ? (operand2_reg):(operand2_imm);
 
+  logic [31:0] operand2;
 
+  assign operand2 = alusrc ? immgen : readdata2;
 
   always_comb begin
-    case(operation)
-      "add": alu_output = operand1 + operand2;
-      "sub": alu_output = operand1 - operand2;
-      "and": alu_output = operand1 & operand2;
-      "or": alu_output = operand1 | operand2;
-      "lw": alu_output = operand1 + operand2_imm;
-      "sw": alu_output = operand1 + operand2_imm;
-      "beq": alu_output = operand1 - operand2;
+    case(aluoperation)
+      4'b0000: alu_output = readdata1 & operand2;
+      4'b0001: alu_output = readdata1 | operand2;
+      4'b0010: alu_output = readdata1 + operand2;
+      4'b0110: alu_output = readdata1 - operand2;
       default: alu_output = 32'b0; 
     endcase
 
     // Check for zero_flag condition
-    if (operation == "beq" && alu_output == 32'b0) begin
+    if (aluoperation == 4'b0110 && alu_output == 32'b0) begin
       zero_flag = 1'b1;
     end else begin
       zero_flag = 1'b0;
@@ -33,4 +32,3 @@ assign operand2=muxcontrol ? (operand2_reg):(operand2_imm);
   end
 
 endmodule
-
