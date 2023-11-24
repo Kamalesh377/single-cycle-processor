@@ -1,3 +1,7 @@
 # single-cycle-processor
-->control unit to be done
-->didnt write testbenches for each stage for verification(but no error in code)
+
+IF-> dp,dp_sv,pc,register
+ID-> topl,regfile,immgenerator,decoder,control
+IE->alu,alucontrol,branchins,toplvl
+MEM->mem_access
+WB-> wb
