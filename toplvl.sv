@@ -42,6 +42,7 @@ wire [3:0] aluoperation;
     .immgen(immgen),
     .pc(pc),
     .pc_branch(pc_branch)
+    .muxcontrol(muxcontrol)
   );
 
   
