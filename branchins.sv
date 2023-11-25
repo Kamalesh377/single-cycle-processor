@@ -4,6 +4,7 @@ module branchins(
     output logic [31:0] pc_branch,
     input logic branch,
     input logic zero_flag
+    output logic muxcontrol
 );
 
 logic [31:0] imm;
