@@ -43,6 +43,8 @@ wire [3:0] aluoperation;
     .pc(pc),
     .pc_branch(pc_branch)
     .muxcontrol(muxcontrol)
+    .branch(branch)
+    .zero_flag(zero_flag)
   );
 
   
