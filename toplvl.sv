@@ -7,16 +7,20 @@ module toplvl(
     input logic [31:0] readdata2,
     input logic [31:0] immgen,
     input logic alusrc,
+    input logic branch,
     
     input logic [31:0] pc,
 
     // Outputs
     
     output logic [31:0] alu_output,
-    output logic zero_flag,
-    output logic [31:0] pc_branch
+    
+    output logic [31:0] pc_branch,
+    output logic muxcontrol
 );
 wire [3:0] aluoperation;
+wire  zero_flag;
+
 
 
   // Instantiate modules
@@ -41,9 +45,9 @@ wire [3:0] aluoperation;
   branchins branchins_inst(
     .immgen(immgen),
     .pc(pc),
-    .pc_branch(pc_branch)
-    .muxcontrol(muxcontrol)
-    .branch(branch)
+    .pc_branch(pc_branch),
+    .muxcontrol(muxcontrol),
+    .branch(branch),
     .zero_flag(zero_flag)
   );
 
